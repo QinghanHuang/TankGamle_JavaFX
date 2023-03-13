@@ -1,5 +1,6 @@
 package com.clement.tank.controller;
 
+import com.clement.tank.sound.SoundEffect;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,6 +19,7 @@ public class IndexController {
     void mouseEnterStartGame(MouseEvent event) {
         //设置鼠标进入时透明度变化
         startGame.setOpacity(0.7);
+        SoundEffect.play("/sound/button.wav");
 
     }
 
