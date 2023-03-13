@@ -19,6 +19,7 @@ public class Index {
         try {
             Parent root= FXMLLoader.load(Index.class.getResource("/fxml/index.fxml"));
         } catch (IOException e) {
+            //陈鑫萍猪猪
             System.out.println(e.getMessage());;
         }
     }
