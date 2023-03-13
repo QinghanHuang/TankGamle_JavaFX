@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<!--            这里是以点号作为分割-->
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.clement.tank.controller.IndexController"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
+<!--            这里是以点号作为分割-->
+
+<AnchorPane prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clement.tank.controller.IndexController">
+   <children>
+      <ImageView fitHeight="640.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Load.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="174.0" fitWidth="194.0" layoutX="385.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="startGame" fitHeight="76.0" fitWidth="266.0" layoutX="347.0" layoutY="414.0" onMouseClicked="#mouseClickStartGame" onMouseEntered="#mouseEnterStartGame" onMouseExited="#mouseExitStartGame" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/StartGameButton.png" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

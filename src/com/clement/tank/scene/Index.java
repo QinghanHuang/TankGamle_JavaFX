@@ -18,10 +18,10 @@ public class Index {
     public static void load(Stage stage){
         try {
             Parent root= FXMLLoader.load(Index.class.getResource("/fxml/index.fxml"));
+            stage.getScene().setRoot(root);
         } catch (IOException e) {
-            //陈鑫萍猪猪
-            //Clement
-            System.out.println(e.getMessage());;
+            System.out.println(e.getMessage());
         }
+
     }
 }

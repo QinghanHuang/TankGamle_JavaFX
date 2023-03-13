@@ -1,4 +1,31 @@
 package com.clement.tank.controller;
 
+import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+
 public class IndexController {
+
+    @FXML
+    private ImageView startGame;
+
+    @FXML
+    void mouseClickStartGame(MouseEvent event) {
+
+    }
+
+    @FXML
+    void mouseEnterStartGame(MouseEvent event) {
+        //设置鼠标进入时透明度变化
+        startGame.setOpacity(0.7);
+
+    }
+
+    @FXML
+    void mouseExitStartGame(MouseEvent event) {
+        //设置鼠标离开时透明度回复
+        startGame.setOpacity(1);
+
+    }
+
 }

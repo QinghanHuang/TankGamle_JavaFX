@@ -35,6 +35,8 @@ public class Director {
         //设置窗口不能改变大小
         stage.setResizable(false);
         stage.setScene(scene);
+        stage.setWidth(WIDTH);
+        stage.setHeight(HEIGHT);
         //通过更改成员变量 stage 来保存stage
         this.stage=stage;
         toIndex();
