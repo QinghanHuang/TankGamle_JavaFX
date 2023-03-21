@@ -1,4 +1,4 @@
-package com.clement.tank.sound;
+package com.clement.tank.util;
 
 import javafx.scene.media.AudioClip;
 

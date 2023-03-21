@@ -1,5 +1,6 @@
 package com.clement.tank;
 
+import com.clement.tank.scene.GameScene;
 import com.clement.tank.scene.Index;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -13,7 +14,8 @@ public class Director {
     private Stage stage;
     //单例模式的导演类
     private static Director instance = new Director();
-
+    // gameScene 作为成员变量用于保存
+    private GameScene gameScene=new GameScene();
     private Director() {
     }
 
@@ -52,6 +54,7 @@ public class Director {
     }
 
     public void gameStart() {
+        gameScene.init(stage);
 
     }
 

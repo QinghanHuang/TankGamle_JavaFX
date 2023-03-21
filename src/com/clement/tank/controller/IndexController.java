@@ -1,6 +1,7 @@
 package com.clement.tank.controller;
 
-import com.clement.tank.sound.SoundEffect;
+import com.clement.tank.Director;
+import com.clement.tank.util.SoundEffect;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -12,6 +13,8 @@ public class IndexController {
 
     @FXML
     void mouseClickStartGame(MouseEvent event) {
+        Director.getInstance().gameStart();
+        SoundEffect.play("/sound/done.wav");
 
     }
 
