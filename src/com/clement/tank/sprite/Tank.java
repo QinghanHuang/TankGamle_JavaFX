@@ -1,5 +1,6 @@
 package com.clement.tank.sprite;
 
+import com.clement.tank.Director;
 import com.clement.tank.scene.GameScene;
 import com.clement.tank.util.Direction;
 
@@ -53,6 +54,9 @@ public class Tank extends Role {
 
     public void released(KeyCode keyCode) {
         switch (keyCode) {
+            case SPACE:
+                fire();
+                break;
             case UP:
                 keyUp = false;
                 break;
@@ -69,6 +73,32 @@ public class Tank extends Role {
         redirect();
     }
 
+    public void fire(){
+        double bx=x;
+        double by=y;
+        switch (aimDir){
+            case UP:
+                bx=x+25;
+                by=y ;
+                break;
+            case DOWN:
+                bx = x+25;
+                by = y+50;
+                break;
+            case LEFT:
+                bx = x;
+                by = y+25;
+                break;
+            case RIGHT:
+                bx = x+50;
+                by = y+25;
+                break;
+        }
+        Bullet bullet=new Bullet(bx,by,group,aimDir,gameScene);
+        gameScene.getBullets().add(bullet);
+
+    }
+
     public void redirect(){
         if(keyUp&&!keyDown&&!keyLeft&&!keyRight) dir=Direction.UP;
         else if(!keyUp&&keyDown&&!keyLeft&&!keyRight) dir=Direction.DOWN;
@@ -83,21 +113,26 @@ public class Tank extends Role {
     public void move() {
         switch (dir){
             case UP :
-                y-=5;
+                y-=speed;
                 break;
             case DOWN:
-                y+=5;
+                y+=speed;
                 break;
             case LEFT:
-                x-=5;
+                x-=speed;
                 break;
             case RIGHT:
-                x+=5;
+                x+=speed;
                 break;
         }
         if(dir!=Direction.STOP){
             aimDir=dir;
         }
+//      设定运动的最大值和最小值
+        if (x<0) x=0;
+        if (y<0) y=0;
+        if(x> Director.WIDTH-width) x=Director.WIDTH-width;
+        if(y> Director.HEIGHT-height-30) y=Director.HEIGHT-width-30;
 
     }
 

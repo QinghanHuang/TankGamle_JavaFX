@@ -2,6 +2,7 @@ package com.clement.tank.scene;
 
 import com.clement.tank.Director;
 import com.clement.tank.sprite.Background;
+import com.clement.tank.sprite.Bullet;
 import com.clement.tank.sprite.Tank;
 import com.clement.tank.util.Direction;
 import com.clement.tank.util.Group;
@@ -13,6 +14,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class GameScene {
@@ -26,11 +30,25 @@ public class GameScene {
     private boolean running = false;
 
     private Background background = new Background();
+    //储存玩家坦克
     private Tank self = new Tank(400, 500, Group.GREEN, Direction.STOP, Direction.UP, this);
+    //储存子弹list
+    private List<Bullet> bullets=new ArrayList<>();
+
+    public List<Bullet> getBullets() {
+        return bullets;
+    }
+
+    public void setBullets(List<Bullet> bullets) {
+        this.bullets = bullets;
+    }
 
     private void paint() {
         background.paint(graphicsContext);
         self.paint(graphicsContext);
+        for (Bullet bullet :bullets) {
+            bullet.paint(graphicsContext);
+        }
 
     }
 
@@ -65,7 +83,7 @@ public class GameScene {
         public void handle(KeyEvent event) {
             KeyCode keyCode = event.getCode();
             if (event.getEventType() == KeyEvent.KEY_RELEASED) {
-                if (keyCode.equals(KeyCode.SPACE)) {
+                if (keyCode.equals(KeyCode.P)) {
                     running = !running;
                 }
                 self.released(keyCode);
