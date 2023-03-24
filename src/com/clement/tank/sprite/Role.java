@@ -15,12 +15,20 @@ public abstract class Role extends Sprite {
     double speed;
     Map<String,Image> imageMap=new HashMap<>();
 
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
     public Role(double x, double y, double width, double height, Group group, Direction dir, GameScene gameScene) {
         super(null, x, y, width, height, gameScene);
         this.group = group;
         this.dir = dir;
     }
     public abstract void move();
-    public abstract boolean impactCheck(Sprite sprite);
+
 
 }

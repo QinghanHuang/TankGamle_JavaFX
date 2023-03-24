@@ -3,6 +3,7 @@ package com.clement.tank.scene;
 import com.clement.tank.Director;
 import com.clement.tank.sprite.Background;
 import com.clement.tank.sprite.Bullet;
+import com.clement.tank.sprite.Explore;
 import com.clement.tank.sprite.Tank;
 import com.clement.tank.util.Direction;
 import com.clement.tank.util.Group;
@@ -34,22 +35,40 @@ public class GameScene {
     private Tank self = new Tank(400, 500, Group.GREEN, Direction.STOP, Direction.UP, this);
     //储存子弹list
     private List<Bullet> bullets=new ArrayList<>();
+    //储存敌方坦克
+    private List<Tank> enemies=new ArrayList<>();
+    //储存爆炸效果
+    private List<Explore> explores=new ArrayList<>();
+
 
     public List<Bullet> getBullets() {
         return bullets;
     }
 
-    public void setBullets(List<Bullet> bullets) {
-        this.bullets = bullets;
+    public List<Tank> getEnemies(){
+        return enemies;
+    }
+
+    public List<Explore> getExplores() {
+        return explores;
     }
 
     private void paint() {
         background.paint(graphicsContext);
         self.paint(graphicsContext);
-        for (Bullet bullet :bullets) {
-            bullet.paint(graphicsContext);
-        }
+        self.impact(enemies);
 
+        for (int i = 0; i <bullets.size() ; i++) {
+            Bullet bullet=bullets.get(i);
+            bullet.paint(graphicsContext);
+            bullet.impact(enemies);
+        }
+        for (int i = 0; i <enemies.size() ; i++) {
+            enemies.get(i).paint(graphicsContext);
+        }
+        for (int i = 0; i <explores.size() ; i++) {
+            explores.get(i).paint(graphicsContext);
+        }
     }
 
     public void init(Stage stage) {
@@ -58,7 +77,16 @@ public class GameScene {
         stage.getScene().setOnKeyPressed(keyProcess);
         stage.getScene().setOnKeyReleased(keyProcess);
         running = true;
+        //初始Sprite
+        initSprite();
         refresh.start();
+    }
+
+    private void initSprite(){
+        for (int i = 0; i < 6; i++) {
+            Tank tank=new Tank(200+i*80,100,Group.RED,Direction.STOP,Direction.DOWN,this);
+            enemies.add(tank);
+        }
     }
 
 
@@ -77,6 +105,7 @@ public class GameScene {
         }
     }
 
+    //设置键盘的监听器
     private class KeyProcess implements EventHandler<KeyEvent> {
 
         @Override
