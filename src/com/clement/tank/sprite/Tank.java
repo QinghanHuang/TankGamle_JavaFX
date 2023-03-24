@@ -11,12 +11,14 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 import java.util.List;
+import java.util.Random;
 
 
 public class Tank extends Role {
     Direction aimDir;
     boolean keyUp, keyDown, keyLeft, keyRight;
     double oldX,oldY;
+    public static Random random=new Random();
 
     public Tank(double x, double y, Group group, Direction dir, Direction aimDir, GameScene gameScene) {
         super(x, y, 60, 60, group, dir, gameScene);
@@ -145,6 +147,19 @@ public class Tank extends Role {
         if (x > Director.WIDTH - width) x = Director.WIDTH - width;
         if (y > Director.HEIGHT - height - 30) y = Director.HEIGHT - width - 30;
 
+        //设置敌方坦克随机移动
+         if(group.equals(Group.RED)){
+             int randomNum=random.nextInt(60);
+             switch (randomNum){
+                 case 15:
+                     Direction[] randomDirs=Direction.values();
+                     dir=randomDirs[random.nextInt(randomDirs.length)];
+                     break;
+                 case 30:
+                     fire();
+                     break;
+             }
+         }
     }
 
     @Override
@@ -172,8 +187,8 @@ public class Tank extends Role {
         move();
     }
 
-    public boolean impact(Tank tank) {
-        if (tank != null  && this.getContour().intersects(tank.getContour())) {
+    public boolean impact(Sprite sprite) {
+        if (sprite != null && !sprite.equals(this)&& this.getContour().intersects(sprite.getContour())) {
             x=oldX;
             y=oldY;
             return true;
@@ -181,9 +196,9 @@ public class Tank extends Role {
         return false;
     }
 
-    public void impact(List<Tank> tanks) {
-        for(Tank tank:tanks){
-            this.impact(tank);
+    public void impact(List<? extends Sprite> sprites) {
+        for(Sprite sprite:sprites){
+            this.impact(sprite);
         }
     }
 

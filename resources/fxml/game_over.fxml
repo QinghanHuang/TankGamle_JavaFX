@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clement.tank.controller.GameOverController">
+   <children>
+      <ImageView fitHeight="640.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/gameOver.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="flag" fitHeight="334.0" fitWidth="513.0" layoutX="117.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Lose.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="returnButton" fitHeight="153.0" fitWidth="284.0" layoutX="674.0" layoutY="408.0" onMouseClicked="#returnClick" onMouseEntered="#returnEnter" onMouseExited="#returnExit" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/return.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="222.0" fitWidth="469.0" layoutX="277.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Game-Over-Yellow-Transparent-PNG.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

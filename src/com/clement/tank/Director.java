@@ -1,5 +1,6 @@
 package com.clement.tank;
 
+import com.clement.tank.scene.GameOver;
 import com.clement.tank.scene.GameScene;
 import com.clement.tank.scene.Index;
 import javafx.scene.Scene;
@@ -58,7 +59,8 @@ public class Director {
 
     }
 
-    public void gameOver() {
-
+    public void gameOver(boolean success) {
+        gameScene.clear(stage);
+        GameOver.load(stage,success);
     }
 }

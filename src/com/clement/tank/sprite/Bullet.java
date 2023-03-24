@@ -66,11 +66,10 @@ public class Bullet extends Role {
             case RIGHT -> x += speed;
         }
 
-        //      设定运动的最大值和最小值
-//        if (x<0) x=0;
-//        if (y<0) y=0;
-//        if(x> Director.WIDTH-width) x=Director.WIDTH-width;
-//        if(y> Director.HEIGHT-height-30) y=Director.HEIGHT-width-30;
+        //出边界的子弹,消除,防止内存溢出
+        if (x<0||y<0||x>Director.WIDTH||y>Director.HEIGHT) {
+            gameScene.getBullets().remove(this);
+        }
 
     }
 
@@ -86,7 +85,7 @@ public class Bullet extends Role {
         move();
     }
 
-    public boolean impact(Tank tank) {
+    public boolean impactTank(Tank tank) {
         // 判断子弹是否不同组
         //并且 Contour 相交
         if (tank != null && !tank.group.equals(this.group) && this.getContour().intersects(tank.getContour())) {
@@ -97,9 +96,34 @@ public class Bullet extends Role {
         return false;
     }
 
-    public void impact(List<Tank> tanks) {
+    public void impactTank(List<Tank> tanks) {
         for(Tank tank:tanks){
-            this.impact(tank);
+            this.impactTank(tank);
+        }
+    }
+    public boolean impactBox(Box box){
+        if (box != null && this.getContour().intersects(box.getContour())) {
+            this.alive = false;
+            gameScene.getBoxes().remove(box);
+            return true;
+        }
+        return false;
+    }
+    public void impactBox(List<Box> boxes){
+        for (int i = 0; i <boxes.size() ; i++) {
+            this.impactBox(boxes.get(i));
+        }
+    }
+    public boolean impactRock(Rock rock){
+        if (rock != null && this.getContour().intersects(rock.getContour())) {
+            this.alive = false;
+            return true;
+        }
+        return false;
+    }
+    public void impactRock(List<Rock> rocks){
+        for (int i = 0; i <rocks.size() ; i++) {
+            this.impactRock(rocks.get(i));
         }
     }
 

@@ -13,12 +13,12 @@
             <Image url="@../image/Load.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="174.0" fitWidth="194.0" layoutX="385.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="174.0" fitWidth="194.0" layoutX="390.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/logo.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="startGame" fitHeight="76.0" fitWidth="266.0" layoutX="347.0" layoutY="414.0" onMouseClicked="#mouseClickStartGame" onMouseEntered="#mouseEnterStartGame" onMouseExited="#mouseExitStartGame" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="startGame" fitHeight="82.0" fitWidth="289.0" layoutX="355.0" layoutY="406.0" onMouseClicked="#mouseClickStartGame" onMouseEntered="#mouseEnterStartGame" onMouseExited="#mouseExitStartGame" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/StartGameButton.png" />
          </image>
